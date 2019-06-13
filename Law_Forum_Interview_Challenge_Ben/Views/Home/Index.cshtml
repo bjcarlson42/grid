@@ -1,0 +1,61 @@
+﻿@model GridViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+<form asp-controller="Home" asp-action="Index" method="post">
+    <div class="summary">@Html.ValidationSummary()</div>
+    <div class="builder-option col-auto"><h6>Which kind of Builder:</h6><span><select asp-for="BuilderType" asp-items="Html.GetEnumSelectList<GridViewModel.GridBuilderType>()"></select></></span></div>
+    <div><h6>Number of rows:</h6><span><input type="number" asp-for="NumRows" /></span></div>
+    <div><h6>Number to not be visible by:</h6><span><input type="number" asp-for="NumDivisibleBy" /> </span></div>
+    <div><h6>Lower:</h6><span><input type="number" asp-for="NumLower"/></span></div>
+    <div><h6>Upper</h6><span><input type="number" asp-for="NumUpper" /></span></div>
+    <div class="col"><button type="submit" class="btn btn-primary">Generate</button></div>
+</form>
+
+@if (Model != null)
+{
+    var rowIndex = 1;
+
+    <div class="row mt-3">
+        <div class="col-md-auto">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Label</th>
+                        <th scope="col">Column 1</th>
+                        <th scope="col">Column 2</th>
+                        <th scope="col">Column 3</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in Model.Grid.Rows.OrderByDescending(row => row.Total))
+                    {
+                        <tr>
+                            <th scope="row">Row @(rowIndex++)</th>
+                            <td class="text-right">@row.Column1</td>
+                            <td class="text-right">@row.Column2</td>
+                            <td class="text-right">@row.Column3</td>
+                            <td class="text-right">@row.Total</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th scope="row">Totals</th>
+                        <td class="text-right">@Model.Grid.Totals.Column1</td>
+                        <td class="text-right">@Model.Grid.Totals.Column2</td>
+                        <td class="text-right">@Model.Grid.Totals.Column3</td>
+                        <td class="text-right">@Model.Grid.Totals.Total</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+}
+
