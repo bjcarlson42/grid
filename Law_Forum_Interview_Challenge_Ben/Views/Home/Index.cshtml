@@ -8,12 +8,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 
 <form asp-controller="Home" asp-action="Index" method="post">
-    <div class="summary">@Html.ValidationSummary()</div>
     <div class="builder-option col-auto"><h6>Which kind of Builder:</h6><span><select asp-for="BuilderType" asp-items="Html.GetEnumSelectList<GridViewModel.GridBuilderType>()"></select></></span></div>
-    <div><h6>Number of rows:</h6><span><input type="number" asp-for="NumRows" /></span></div>
-    <div><h6>Number to not be visible by:</h6><span><input type="number" asp-for="NumDivisibleBy" /> </span></div>
-    <div><h6>Lower:</h6><span><input type="number" asp-for="NumLower"/></span></div>
-    <div><h6>Upper</h6><span><input type="number" asp-for="NumUpper" /></span></div>
+
+    <div><h6>Number of rows:</h6><input type="number" asp-for="NumRows" placeholder="ex. 3" asp-validation-for="NumRows" data-val="true" data-val-required="The number of rows must be a positive number."/>
+    <span class="text-danger field-validation-valid" data-valmsg-for="NumRows" data-valmsg-replace="true"></span></div>
+
+    <div><h6>Number to not be visible by:</h6><input type="number" asp-for="NumDivisibleBy" placeholder="ex. 5" data-val="true" data-val-required="The number divisible by must be a positive number."/>
+    <span class="text-danger field-validation-valid" data-valmsg-for="NumDivisibleBy" data-valmsg-replace="true"></span></div>
+
+    <div><h6>Lower:</h6><input type="number" asp-for="NumLower" placeholder="ex. 1" data-val="true" data-val-required="The lower number by must be a positive number."/>
+    <span class="text-danger field-validation-valid" data-valmsg-for="NumLower" data-valmsg-replace="true"></span></div>
+
+    <div><h6>Upper</h6><input type="number" asp-for="NumUpper" placeholder="ex. 100" data-val="true" data-val-required="The upper number by must be a positive number."/>
+    <span class="text-danger field-validation-valid" data-valmsg-for="NumUpper" data-valmsg-replace="true"></span></div>
+
     <div class="col"><button type="submit" class="btn btn-primary">Generate</button></div>
 </form>
 

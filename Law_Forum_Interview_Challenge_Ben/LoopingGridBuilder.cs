@@ -8,11 +8,11 @@ namespace Law_Forum_Interview_Challenge_Ben
     public class LoopingGridBuilder : IGridBuilder
     {
         readonly Random random = new Random();
-
+        
         public Grid CreateGrid(int rows, int div, int lower, int upper)
         {
-            var grid = new Grid();
-          
+            var grid = new Grid();           
+
             do
             {
                 grid.Rows.Clear();
@@ -56,7 +56,6 @@ namespace Law_Forum_Interview_Challenge_Ben
             while (num % div == 0);
 
             return num;
-
         }
     }
 }

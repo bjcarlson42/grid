@@ -21,6 +21,7 @@ namespace Law_Forum_Interview_Challenge_Ben.Controllers
         public IActionResult Index(GridViewModel.GridBuilderType builderType, int NumRows, int NumDivisibleBy, int NumLower, int NumUpper)
         {
             IGridBuilder builder;
+            GridHistory entry = new GridHistory("Looping", NumRows, NumDivisibleBy, NumLower, NumUpper);
 
             switch (builderType)
             {
@@ -32,18 +33,17 @@ namespace Law_Forum_Interview_Challenge_Ben.Controllers
             var vm = new GridViewModel
             {
                 BuilderType = builderType,
-                Grid = builder.CreateGrid(NumRows, NumDivisibleBy, NumLower, NumUpper),
+                Grid = builder.CreateGrid(NumRows, NumDivisibleBy, NumLower, NumUpper),            
                 NumRows = NumRows,
                 NumDivisibleBy = NumDivisibleBy,
                 NumLower = NumLower,
                 NumUpper = NumUpper
-
             };
 
             return View(vm);
         }
 
-        public IActionResult Privacy()
+        public IActionResult History()
         {
             return View();
         }

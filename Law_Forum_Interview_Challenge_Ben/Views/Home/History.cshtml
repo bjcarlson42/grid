@@ -1,0 +1,36 @@
+﻿@model IList<GridHistory>
+@{
+    ViewData["Title"] = "History";
+}
+
+<h1>History:</h1>
+
+    <div class="row mt-3">
+        <div class="col-md-auto">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Builder</th>
+                        <th scope="col">Rows</th>
+                        <th scope="col">Divisible</th>
+                        <th scope="col">Lower</th>
+                        <th scope="col">Upper</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var grid in Model)
+                    {
+                    <tr>
+                        <th scope="row">Grid @Model.gridNumber++</th>
+                        <td class="text-right">@Model.Lgb</td>
+                        <td class="text-right">@Model.NumRows</td>
+                        <td class="text-right">@Model.NumRows</td>
+                        <td class="text-right">@Model.Lower</td>
+                        <td class="text-right">@Model.Upper</td>
+                    </tr>
+                    }
+                </tbody>           
+            </table>
+        </div>
+    </div>
