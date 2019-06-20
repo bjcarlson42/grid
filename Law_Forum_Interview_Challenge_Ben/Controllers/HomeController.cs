@@ -21,7 +21,7 @@ namespace Law_Forum_Interview_Challenge_Ben.Controllers
         public IActionResult Index(GridViewModel.GridBuilderType builderType, int NumRows, int NumDivisibleBy, int NumLower, int NumUpper)
         {
             IGridBuilder builder;
-            GridHistory entry = new GridHistory("Looping", NumRows, NumDivisibleBy, NumLower, NumUpper);
+            //GridHistory entry = new GridHistory("Looping", NumRows, NumDivisibleBy, NumLower, NumUpper);
 
             switch (builderType)
             {
